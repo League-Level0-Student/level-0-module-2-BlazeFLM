@@ -1,7 +1,9 @@
 
 package _99_extra;
 
- /* NASA wants to shoot a rocket into orbit. 
+import javax.swing.JOptionPane;
+
+/* NASA wants to shoot a rocket into orbit. 
   * Somebody has to do the countdown or the rocket won't launch.
  * 
  * The ground control chief will tell you where to start – then count down to 0. 
@@ -13,20 +15,33 @@ package _99_extra;
 public class NasaCountdown {
 	public static void main(String[] args) throws InterruptedException {
 		// 2. Use a pop-up to ask the user where to start counting from
-
+		String askCount = JOptionPane.showInputDialog("Where do you want to start counting from?");
 		// 3. Change the countdown to use the new starting point
-		
+		int askCountInt = Integer.parseInt(askCount);
 		// 1. Print a countdown from 10 to 0 on the console
-	
-			// 4. Use the speak method to hear the countdown.
-		
-			// 6. Use the following code to make the program wait one second for each number: Thread.sleep(1000);
-		
+		for (int i = askCountInt; i >= 0; --i) {
+			String num = String.valueOf(i);
+			System.out.println(i);
+			Thread.sleep(1000);
+			if (i < 1) {
+				JOptionPane.showMessageDialog(null, "Blastoff!");
+				speak("Blastoff!");
+			} else {
+				speak(num);
+			}
+		}
+
+		// 4. Use the speak method to hear the countdown.
+
+		// 6. Use the following code to make the program wait one second for each
+		// number: Thread.sleep(1000);
+
 		// 5. when the counting is done, speak "blastoff!"
+
 	}
 
-static void speak(String words) {
-		
+	static void speak(String words) {
+
 		if (System.getProperty("os.name").contains("Windows")) {
 			String cmd = "PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('"
 					+ words + "');\"";
@@ -44,5 +59,3 @@ static void speak(String words) {
 		}
 	}
 }
-
-
