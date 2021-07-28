@@ -25,9 +25,9 @@ public class NasaCountdown {
 			Thread.sleep(1000);
 			if (i < 1) {
 				JOptionPane.showMessageDialog(null, "Blastoff!");
-				speak("Blastoff!");
+				//speak("Blastoff!");
 			} else {
-				speak(num);
+				//speak(num);
 			}
 		}
 
